@@ -1,0 +1,33 @@
+
+<% Post.all.each do |post| %>
+<h1> <%= post.title %></h1>
+<div id="<%= post.id %>" style="width:500px;height:400px;"></div>
+<script type="text/javascript" src="//apis.daum.net/maps/maps3.js?apikey=eca8705c5e65ca3b4f9552cbd4d02b7a"></script>
+
+<script>
+	var container = document.getElementById('<%= post.id %>');
+	var options = {
+		center: new daum.maps.LatLng(<%= post.lat%>, <%= post.lot %>),
+		level: 3
+	};
+	var map = new daum.maps.Map(container, options);	
+	// 마커가 표시될 위치입니다 
+	var markerPosition  = new daum.maps.LatLng(<%= post.lat%>, <%= post.lot %>); 
+
+	// 마커를 생성합니다
+	var marker = new daum.maps.Marker({
+	    position: markerPosition
+	});
+
+	// 마커가 지도 위에 표시되도록 설정합니다
+	marker.setMap(map);
+
+	// 아래 코드는 지도 위의 마커를 제거하는 코드입니다
+	// marker.setMap(null);    
+	
+</script>
+<% end %>
+
+
+
+// marker.setMap(null);    
